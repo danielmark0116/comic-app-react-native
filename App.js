@@ -1,3 +1,7 @@
+import React from "react";
+import { store } from "./src/store";
+import { Provider } from "react-redux";
+
 import ComicsList from "./src/screens/ComicsList/ComicList";
 import ComicsDetails from "./src/screens/ComicDetails/ComicDetails";
 
@@ -11,4 +15,10 @@ const MainNavigator = createStackNavigator({
 
 const App = createAppContainer(MainNavigator);
 
-export default App;
+const Root = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+export default Root;
