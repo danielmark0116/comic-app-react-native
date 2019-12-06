@@ -1,19 +1,14 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import ComicsList from "./src/screens/ComicsList/ComicList";
+import ComicsDetails from "./src/screens/ComicDetails/ComicDetails";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Project init</Text>
-    </View>
-  );
-}
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
+const MainNavigator = createStackNavigator({
+  Home: { screen: ComicsList },
+  Details: { screen: ComicsDetails }
 });
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
