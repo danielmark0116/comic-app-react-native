@@ -4,16 +4,16 @@ import { View, Text } from "react-native";
 import { store } from "./src/store";
 import { Provider } from "react-redux";
 
-import ComicsList from "./src/screens/ComicsList/ComicList";
-import ComicsDetails from "./src/screens/ComicDetails/ComicDetails";
+import ComicsListScreen from "./src/screens/ComicsListScreen/ComicListScreen";
+import ComicsDetailsScreen from "./src/screens/ComicDetailsScreen/ComicDetailsScreen";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
 const MainNavigator = createStackNavigator(
   {
-    Home: { screen: ComicsList },
-    Details: { screen: ComicsDetails }
+    Home: { screen: ComicsListScreen },
+    Details: { screen: ComicsDetailsScreen }
   },
   {
     defaultNavigationOptions: {
