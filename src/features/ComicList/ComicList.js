@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { View, Text, Button, FlatList } from "react-native";
 
-import { View, Text, Button } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import {
   selectorComicsLatest,
   selectorComicsRequestData
 } from "../../reducers/comicReducer";
 import { comicGetListThunk } from "../../actions/comicActions";
 import { withNavigation } from "react-navigation";
+
 import Loader from "../../common/Loader/Loader";
 import Error from "../../common/Error/Error";
 
@@ -27,19 +28,23 @@ const ComicList = props => {
   if (error) return <Error></Error>;
 
   return (
-    <View>
+    <>
       {comicsList.length === 0 && <Text>No comics...</Text>}
 
-      {comicsList.map((item, index) => (
-        <View key={index}>
-          <Text>{item.title}</Text>
-          <Button
-            onPress={() => navigate("Details", { img: item.img })}
-            title="Go to comic detail page"
-          />
-        </View>
-      ))}
-    </View>
+      <FlatList
+        data={comicsList}
+        keyExtractor={item => item.num.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.title}</Text>
+            <Button
+              onPress={() => navigate("Details", { img: item.img })}
+              title="Go to comic detail page"
+            />
+          </View>
+        )}
+      />
+    </>
   );
 };
 

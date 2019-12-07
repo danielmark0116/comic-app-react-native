@@ -3,12 +3,14 @@ import { View, Text } from "react-native";
 
 import { store } from "./src/store";
 import { Provider } from "react-redux";
-
-import ComicsListScreen from "./src/screens/ComicsListScreen/ComicListScreen";
-import ComicsDetailsScreen from "./src/screens/ComicDetailsScreen/ComicDetailsScreen";
+import { theme } from "./src/styled/theme";
+import { ThemeProvider } from "styled-components";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+
+import ComicsListScreen from "./src/screens/ComicsListScreen/ComicListScreen";
+import ComicsDetailsScreen from "./src/screens/ComicDetailsScreen/ComicDetailsScreen";
 
 const MainNavigator = createStackNavigator(
   {
@@ -29,9 +31,11 @@ const MainNavigator = createStackNavigator(
 const App = createAppContainer(MainNavigator);
 
 const Root = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <App style={{ flex: 1 }} />
+    </Provider>
+  </ThemeProvider>
 );
 
 export default Root;
