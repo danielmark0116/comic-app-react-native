@@ -41,6 +41,8 @@ export const comicGetListThunk = () => {
 
       const comicList = [latestComic, ...remainingComicsResp.map(x => x.data)];
 
+      await new Promise((res, rej) => setTimeout(res, 1000));
+
       dispatch(comicGetLatest(comicList));
       dispatch(comicGetListSuccess("Successfully fetched latest comics"));
     } catch (e) {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, RefreshControl } from "react-native";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,8 +9,8 @@ import {
 import { comicGetListThunk } from "../../actions/comicActions";
 import { withNavigation } from "react-navigation";
 
-import Loader from "../../common/Loader/Loader";
 import Error from "../../common/Error/Error";
+import { ScrollView } from "react-native-gesture-handler";
 
 const ComicList = props => {
   const comicsList = useSelector(selectorComicsLatest);
@@ -22,14 +22,20 @@ const ComicList = props => {
   }, [""]);
 
   const { navigate } = props.navigation;
-  const { pending, error } = comicsListRequestData;
+  const { pending, error, success } = comicsListRequestData;
 
-  if (pending) return <Loader></Loader>;
   if (error) return <Error></Error>;
 
   return (
-    <>
-      {comicsList.length === 0 && <Text>No comics...</Text>}
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={pending}
+          onRefresh={() => dispatch(comicGetListThunk())}
+        />
+      }
+    >
+      {success && comicsList.length === 0 && <Text>No comics...</Text>}
 
       <FlatList
         data={comicsList}
@@ -44,7 +50,7 @@ const ComicList = props => {
           </View>
         )}
       />
-    </>
+    </ScrollView>
   );
 };
 
