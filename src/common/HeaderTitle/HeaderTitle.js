@@ -1,13 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+
 import { HTitle } from "./HeaderTitle.styled";
 
 const HeaderTitle = () => {
-  return (
-    <View>
-      <HTitle>XKCD</HTitle>
-    </View>
-  );
+  return <HTitle>XKCD</HTitle>;
 };
 
 export default HeaderTitle;

@@ -17,7 +17,7 @@ const initState = {
 export function comicReducer(state = initState, action) {
   switch (action.type) {
     case types.COMIC_GET_LATEST:
-      return { ...state, comics: action.payload };
+      return { ...state, comics: action.payload.sort((a, b) => b.num - a.num) };
     case types.COMIC_GET_LATEST_PENDING:
       return {
         ...state,

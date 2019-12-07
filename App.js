@@ -11,37 +11,26 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import ComicsListScreen from "./src/screens/ComicsListScreen/ComicListScreen";
 import ComicsDetailsScreen from "./src/screens/ComicDetailsScreen/ComicDetailsScreen";
+import AboutPage from "./src/screens/AboutScreen/AboutScreen";
 import HeaderTitle from "./src/common/HeaderTitle/HeaderTitle";
-import { View, Text, Image } from "react-native";
 
 import Icon from "react-native-vector-icons/AntDesign";
 
 const MainNavigator = createStackNavigator(
   {
     Home: { screen: ComicsListScreen },
-    Details: { screen: ComicsDetailsScreen }
+    Details: { screen: ComicsDetailsScreen },
+    About: { screen: AboutPage }
   },
   {
-    // cardStyle: { opacity: 1 },
     defaultNavigationOptions: {
       headerStyle: {
         elevation: 1,
         shadowOpacity: 1,
         borderBottomWidth: 0
-        // borderBottomLeftRadius: 20,
-        // borderBottomRightRadius: 20
-
-        // backgroundColor: "green",
-        // borderWidth: 3, // Set border width.
-        // borderColor: "#F44336", // Set border Hex Color code here.
-        // borderRadius: 60, // Set border Radius.
-        // borderStyle: "solid",
-        // overflow: "hidden"
       },
-
       headerTitle: <HeaderTitle></HeaderTitle>,
-      headerBackTitle: "Go back",
-      headerRight: <Text style={{ padding: 10 }}>About</Text>,
+      headerBackTitle: null,
       headerTintColor: "black",
       headerBackTitleStyle: { fontSize: 12 },
       headerBackImage: (

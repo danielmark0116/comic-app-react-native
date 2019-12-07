@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import ComicList from "../../features/ComicList/ComicList";
-import Header from "../../common/Header/Header";
+import AboutBtn from "../../features/AboutBtn/AboutBtn";
 
 const ComicListScreen = () => {
-  const [offset, setOffset] = useState(0);
+  return <ComicList />;
+};
 
-  return (
-    <>
-      {/* <Header offset={offset}></Header> */}
-      <ComicList offsetCallback={setOffset} />
-    </>
-  );
+ComicListScreen.navigationOptions = {
+  headerRight: <AboutBtn></AboutBtn>
 };
 
 export default ComicListScreen;

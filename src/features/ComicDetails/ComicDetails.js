@@ -1,16 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { withNavigation } from "react-navigation";
+
+import CustomImage from "../../common/CustomImage/CustomImage";
 
 const ComicDetails = props => {
   const { navigation } = props;
 
-  return (
-    <View>
-      <Text>Comic pic</Text>
-      <Text>{navigation.getParam("img", null)}</Text>
-    </View>
-  );
+  return <CustomImage source={navigation.getParam("img", null)} />;
 };
 
 export default withNavigation(ComicDetails);
