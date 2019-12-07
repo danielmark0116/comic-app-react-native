@@ -3,17 +3,24 @@ import { connect } from "react-redux";
 
 import { View, Text } from "react-native";
 import { selectorComicsGetList } from "../../reducers/comicReducer";
-import { comicGetList } from "../../actions/comicActions";
+import { comicGetList, comicGetListThunk } from "../../actions/comicActions";
 
 class ComicDetails extends React.Component {
-  static navigationOptions = {
-    title: "Comics Details"
-  };
+  //   static navigationOptions = {
+  //     // title: "Comics Details",
+
+  //     headerTitle: () => (
+  // <View style={{ backgroundColor: "red" }}>
+  //   <Text>asd</Text>
+  // </View>
+  //     )
+  //   };
 
   componentDidMount() {
-    const { getComics } = this.props;
+    const { getComics, test } = this.props;
 
     getComics();
+    test();
   }
 
   render() {
@@ -36,7 +43,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getComics: () => dispatch(comicGetList())
+  getComics: () => dispatch(comicGetList()),
+  test: () => dispatch(comicGetListThunk())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComicDetails);

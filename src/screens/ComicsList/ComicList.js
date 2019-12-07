@@ -3,11 +3,6 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 
 export default class ComicList extends React.Component {
-  static navigationOptions = {
-    title: "Comics List",
-    headerBackTitle: null
-  };
-
   render() {
     const { navigate } = this.props.navigation;
 

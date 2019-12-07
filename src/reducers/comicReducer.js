@@ -1,15 +1,53 @@
 import * as types from "../actions/actionTypes";
 
-export const selectorComicsGetList = state => state.comics.comics;
+export const selectorComicsLatest = state => state.comics.comics;
+export const selectorComicsRequestData = state =>
+  state.comics.comicsRequestData;
 
 const initState = {
-  comics: []
+  comics: [],
+  comicsRequestData: {
+    pending: false,
+    success: false,
+    error: false,
+    msg: ""
+  }
 };
 
 export function comicReducer(state = initState, action) {
   switch (action.type) {
-    case types.TEST:
-      return { ...state, comics: [1, 2, 3, 4, 5, 6, 7, 8] };
+    case types.COMIC_GET_LATEST:
+      return { ...state, comics: action.payload };
+    case types.COMIC_GET_LATEST_PENDING:
+      return {
+        ...state,
+        comicsRequestData: {
+          pending: true,
+          success: false,
+          error: false,
+          msg: action.payload
+        }
+      };
+    case types.COMIC_GET_LATEST_SUCCESS:
+      return {
+        ...state,
+        comicsRequestData: {
+          pending: false,
+          success: true,
+          error: false,
+          msg: action.payload
+        }
+      };
+    case types.COMIC_GET_LATEST_FAIL:
+      return {
+        ...state,
+        comicsRequestData: {
+          pending: false,
+          success: false,
+          error: true,
+          msg: action.payload
+        }
+      };
     default:
       return { ...state };
   }
