@@ -9,6 +9,7 @@ import {
 import { comicGetListThunk } from "../../actions/comicActions";
 import { withNavigation } from "react-navigation";
 import Loader from "../../common/Loader/Loader";
+import Error from "../../common/Error/Error";
 
 const ComicList = props => {
   const comicsList = useSelector(selectorComicsLatest);
@@ -20,9 +21,10 @@ const ComicList = props => {
   }, [""]);
 
   const { navigate } = props.navigation;
-  const { pending } = comicsListRequestData;
+  const { pending, error } = comicsListRequestData;
 
   if (pending) return <Loader></Loader>;
+  if (error) return <Error></Error>;
 
   return (
     <View>
