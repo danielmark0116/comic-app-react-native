@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { View, Text, Button } from "react-native";
-import { selectorComicsLatest } from "../../reducers/comicReducer";
+import {
+  selectorComicsLatest,
+  selectorComicsRequestData
+} from "../../reducers/comicReducer";
 import { comicGetListThunk } from "../../actions/comicActions";
 import { withNavigation } from "react-navigation";
+import Loader from "../../common/Loader/Loader";
 
 const ComicList = props => {
   const comicsList = useSelector(selectorComicsLatest);
+  const comicsListRequestData = useSelector(selectorComicsRequestData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,12 +20,13 @@ const ComicList = props => {
   }, [""]);
 
   const { navigate } = props.navigation;
+  const { pending } = comicsListRequestData;
+
+  if (pending) return <Loader></Loader>;
 
   return (
     <View>
-      <Text style={{ fontSize: 30, marginBottom: 30, textAlign: "center" }}>
-        Comic List
-      </Text>
+      {comicsList.length === 0 && <Text>No comics...</Text>}
 
       {comicsList.map((item, index) => (
         <View key={index}>
