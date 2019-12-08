@@ -3,9 +3,7 @@ import React from "react";
 import ComicList from "../../features/ComicList/ComicList";
 import AboutBtn from "../../features/AboutBtn/AboutBtn";
 
-const ComicListScreen = () => {
-  return <ComicList />;
-};
+const ComicListScreen = () => <ComicList />;
 
 ComicListScreen.navigationOptions = {
   headerRight: <AboutBtn></AboutBtn>
